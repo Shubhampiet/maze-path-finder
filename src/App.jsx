@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { maze } from "./data/sampleMaze";
 import { bfs } from "./algorithms/bfs";
 import MazeGrid from "./components/MazeGrid";
+import { generateRandomMaze } from "./utils/generateMaze";
+
 
 function App() {
+  const [maze, setMaze] = useState(
+  generateRandomMaze(15, 15)
+);
   const start = { row: 0, col: 0 };
   const end = { row: maze.length - 1, col: maze[0].length - 1 };
 
@@ -11,6 +15,7 @@ function App() {
   const [path, setPath] = useState([]);
   const [isSolving, setIsSolving] = useState(false);
   const [speed, setSpeed] = useState(50);
+
 
   const handleSolve = async () => {
     if (isSolving) return;
@@ -67,6 +72,17 @@ function App() {
         >
           Reset
         </button>
+  <button
+  onClick={() => {
+    if (isSolving) return;
+    setMaze(generateRandomMaze(15, 15));
+    setVisitedCells([]);
+    setPath([]);
+  }}
+>
+  Generate New Maze
+</button>
+
 
         <div style={{ marginTop: "10px" }}>
           <label>Speed: </label>
