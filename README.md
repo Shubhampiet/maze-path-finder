@@ -136,3 +136,6 @@ Proper separation between logic and UI
 Handling of edge cases
 
 Visual algorithm representation
+
+<img width="577" height="700" alt="image" src="https://github.com/user-attachments/assets/a440b0aa-bbde-464a-9393-fce73593366e" />
+<img width="577" height="700" alt="image" src="https://github.com/user-attachments/assets/6745f4ca-1b42-46e5-a3c3-a4d1ed060de0" />
