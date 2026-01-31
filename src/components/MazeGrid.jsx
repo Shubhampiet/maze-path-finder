@@ -2,13 +2,16 @@ import Cell from "./Cell";
 
 export default function MazeGrid({
   grid,
+  visitedCells,
+  path,
   start,
-  end,
-  visitedCells
+  end
 }) {
-
-    const isVisited = (r, c) =>
+  const isVisited = (r, c) =>
     visitedCells.some(cell => cell.row === r && cell.col === c);
+
+  const isPath = (r, c) =>
+    path.some(cell => cell.row === r && cell.col === c);
 
   return (
     <div
@@ -28,6 +31,8 @@ export default function MazeGrid({
             type = "start";
           } else if (rIdx === end.row && cIdx === end.col) {
             type = "end";
+          } else if (isPath(rIdx, cIdx)) {
+            type = "path";
           } else if (isVisited(rIdx, cIdx)) {
             type = "visited";
           }

@@ -27,6 +27,29 @@
   background: #e74c3c;
 }
 
+
 .visited {
   background: #f1c40f;
 }
+
+.path {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  border-radius: 6px;
+  animation: pulse 0.6s ease forwards;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.6);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+

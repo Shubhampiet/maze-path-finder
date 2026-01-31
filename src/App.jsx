@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { maze } from "./data/sampleMaze";
-import MazeGrid from "./components/MazeGrid";
 import { bfs } from "./algorithms/bfs";
+import MazeGrid from "./components/MazeGrid";
 
 function App() {
   const start = { row: 0, col: 0 };
@@ -30,6 +30,7 @@ function App() {
     );
 
     if (result) {
+      // Small pause before path animation
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       for (let i = 0; i < result.length; i++) {
@@ -43,19 +44,51 @@ function App() {
     setIsSolving(false);
   };
 
+  const handleReset = () => {
+    if (isSolving) return;
+    setVisitedCells([]);
+    setPath([]);
+  };
+
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
+    <div style={{ display: "flex", justifyContent: "center",  height: "100vh", width: "100vw" }}>
+    <div style={{ textAlign: "center"}}>
       <h2>Maze Solver (BFS)</h2>
-      <button onClick={handleSolve} disabled={isSolving}>
-        Solve
-      </button>
+
+      <div style={{ marginBottom: "15px" }}>
+        <button onClick={handleSolve} disabled={isSolving}>
+          Solve
+        </button>
+
+        <button
+          onClick={handleReset}
+          disabled={isSolving}
+          style={{ marginLeft: "10px" }}
+        >
+          Reset
+        </button>
+
+        <div style={{ marginTop: "10px" }}>
+          <label>Speed: </label>
+          <input
+            type="range"
+            min="10"
+            max="300"
+            value={speed}
+            onChange={(e) => setSpeed(Number(e.target.value))}
+          />
+          <span> {speed} ms</span>
+        </div>
+      </div>
 
       <MazeGrid
         grid={maze}
         visitedCells={visitedCells}
+        path={path}
         start={start}
         end={end}
       />
+    </div>
     </div>
   );
 }
