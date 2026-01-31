@@ -1,0 +1,29 @@
+.grid {
+  display: grid;
+  gap: 2px;
+  justify-content: center;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.wall {
+  background: #2c3e50;
+}
+
+.open {
+  background: #ecf0f1;
+}
+
+.start {
+  background: #2ecc71;
+}
+
+.end {
+  background: #e74c3c;
+}
+
