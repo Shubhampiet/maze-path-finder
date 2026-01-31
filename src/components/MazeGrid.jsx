@@ -3,8 +3,12 @@ import Cell from "./Cell";
 export default function MazeGrid({
   grid,
   start,
-  end
+  end,
+  visitedCells
 }) {
+
+    const isVisited = (r, c) =>
+    visitedCells.some(cell => cell.row === r && cell.col === c);
 
   return (
     <div
@@ -24,7 +28,9 @@ export default function MazeGrid({
             type = "start";
           } else if (rIdx === end.row && cIdx === end.col) {
             type = "end";
-          } 
+          } else if (isVisited(rIdx, cIdx)) {
+            type = "visited";
+          }
 
           return (
             <Cell
